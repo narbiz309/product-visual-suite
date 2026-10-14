@@ -1,10 +1,10 @@
-/* Product Visual Suite v7.1 — loaded by the Gemini Canvas stub via jsDelivr. Edit here, not in Canvas. */
+/* Product Visual Suite v7.2 — loaded by the Gemini Canvas stub via jsDelivr. Edit here, not in Canvas. */
 (function(){
 document.title = "Product Visual Suite";
 const st = document.createElement("style"); st.textContent = '\n  :root{--bg:#f6f7f9;--card:#fff;--ink:#0f172a;--mute:#64748b;--line:#e2e8f0;--acc:#dc2626}\n  *{box-sizing:border-box}\n  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}\n  .wrap{max-width:980px;margin:0 auto;padding:20px 16px 60px}\n  h1{font-size:22px;margin:0 0 4px} .sub{color:var(--mute);font-size:14px;margin:0 0 18px}\n  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:16px}\n  .card h2{font-size:16px;margin:0 0 10px}\n  .drop{border:2px dashed var(--line);border-radius:12px;padding:22px;text-align:center;color:var(--mute);cursor:pointer}\n  .drop.on{border-color:var(--acc);background:#fef2f2}\n  .thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;margin-top:12px}\n  .thumb{position:relative;border:1px solid var(--line);border-radius:8px;overflow:hidden;aspect-ratio:1;background:#fff}\n  .thumb img{width:100%;height:100%;object-fit:contain}\n  .thumb .x{position:absolute;top:4px;right:4px;background:#0009;color:#fff;border:0;border-radius:50%;width:22px;height:22px;cursor:pointer}\n  .thumb .n{position:absolute;bottom:4px;left:4px;background:#0009;color:#fff;font-size:11px;border-radius:4px;padding:1px 5px}\n  label.f{display:block;font-size:13px;color:var(--mute);margin:12px 0 6px}\n  input[type=text],select,textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;font-size:14px;font-family:inherit}\n  textarea{min-height:64px;resize:vertical}\n  .btn{display:inline-block;padding:12px 18px;border:0;border-radius:10px;background:var(--acc);color:#fff;font-weight:600;font-size:15px;cursor:pointer;margin-top:14px}\n  .btn:disabled{opacity:.5;cursor:not-allowed}\n  .btn.sec{background:#fff;color:var(--ink);border:1px solid var(--line)}\n  .items{display:flex;flex-direction:column;gap:6px}\n  .item{display:flex;align-items:center;gap:8px;padding:10px;border:1px solid var(--line);border-radius:8px;font-size:14px}\n  .item small{color:var(--mute)}\n  .alert{background:#fef3c7;border:1px solid #fde68a;color:#78350f;border-radius:8px;padding:10px;font-size:14px;margin:8px 0}\n  .err{background:#fee2e2;border-color:#fecaca;color:#7f1d1d}\n  .results{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;align-items:start}\n  .res img{width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;display:block}\n  .res .ph{aspect-ratio:1;border:1px dashed var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--mute);font-size:14px;text-align:center;padding:10px}\n  .res .ph.tall{aspect-ratio:9/16}\n  .row{display:flex;gap:8px;flex-wrap:wrap}\n  .row .btn{margin-top:10px;padding:9px 14px;font-size:14px}\n  .spin{display:inline-block;width:16px;height:16px;border:2px solid #ddd;border-top-color:var(--acc);border-radius:50%;animation:s 1s linear infinite;vertical-align:middle;margin-right:6px}\n  @keyframes s{to{transform:rotate(360deg)}}\n  .tip{font-size:12px;color:var(--mute);margin-top:6px}\n  .hidden{display:none}\n';
 document.head.appendChild(st);
 const root = document.getElementById("pvs-root") || document.body;
-root.innerHTML = '<div class="wrap">\n  <h1>Product Visual Suite</h1>\n  <p class="sub">Upload gambar produk → Hero Shot, Product Sheet dan gambar Usage untuk rujukan video.</p>\n\n  <div class="card">\n    <h2>1. Upload gambar produk (1–8)</h2>\n    <div id="drop" class="drop">Tekan atau tarik gambar ke sini<br><small>Upload depan, belakang, sisi, bawah. Boleh tambah gambar customer guna produk (untuk rujukan saiz).</small></div>\n    <input id="file" type="file" accept="image/*" multiple class="hidden">\n    <div id="thumbs" class="thumbs"></div>\n    <label class="f">Dimensi produk (pilihan, cth: 32 x 20 cm)</label>\n    <input id="dims" type="text" placeholder="Tak wajib">\n    <button id="btnAnalyze" class="btn" disabled>Analisis Produk</button>\n    <div id="anMsg"></div>\n  </div>\n\n  <div id="planCard" class="card hidden">\n    <h2>2. Semak plan</h2>\n    <div id="planBody"></div>\n    <button id="btnGen" class="btn">Jana Gambar</button>\n  </div>\n\n  <div id="resCard" class="card hidden">\n    <h2>3. Hasil</h2>\n    <div class="results">\n      <div class="res"><b>Hero Shot (1:1)</b><div id="r_hero" class="ph">Menunggu…</div><div class="row"><button class="btn sec" data-dl="hero">Download</button><button class="btn sec" data-re="hero">Jana Semula</button></div></div>\n      <div class="res"><b>Product Sheet (9:16)</b><div id="r_sheet" class="ph tall">Menunggu…</div><div class="row"><button class="btn sec" data-dl="sheet">Download</button><button class="btn sec" data-re="sheet">Jana Semula</button></div></div>\n      <div class="res"><b id="usageTitle">Usage (1:1)</b><div id="r_usage" class="ph">Menunggu…</div><div class="row"><button class="btn sec" data-dl="usage">Download</button><button class="btn sec" data-re="usage">Jana Semula</button></div></div>\n    </div>\n    <p class="tip">Kalau butang Download tak jalan, tekan lama / klik kanan gambar → Save image.</p>\n  </div>\n</div>' + '<div style="text-align:center;color:#94a3b8;font-size:11px;padding:8px">v7.1</div>';
+root.innerHTML = '<div class="wrap">\n  <h1>Product Visual Suite</h1>\n  <p class="sub">Upload gambar produk → Hero Shot, Product Sheet dan gambar Usage untuk rujukan video.</p>\n\n  <div class="card">\n    <h2>1. Upload gambar produk (1–8)</h2>\n    <div id="drop" class="drop">Tekan atau tarik gambar ke sini<br><small>Upload depan, belakang, sisi, bawah. Boleh tambah gambar customer guna produk (untuk rujukan saiz).</small></div>\n    <input id="file" type="file" accept="image/*" multiple class="hidden">\n    <div id="thumbs" class="thumbs"></div>\n    <label class="f">Dimensi produk (pilihan, cth: 32 x 20 cm)</label>\n    <input id="dims" type="text" placeholder="Tak wajib">\n    <button id="btnAnalyze" class="btn" disabled>Analisis Produk</button>\n    <div id="anMsg"></div>\n  </div>\n\n  <div id="planCard" class="card hidden">\n    <h2>2. Semak plan</h2>\n    <div id="planBody"></div>\n    <button id="btnGen" class="btn">Jana Gambar</button>\n  </div>\n\n  <div id="resCard" class="card hidden">\n    <h2>3. Hasil</h2>\n    <div class="results">\n      <div class="res"><b>Hero Shot (1:1)</b><div id="r_hero" class="ph">Menunggu…</div><div class="row"><button class="btn sec" data-dl="hero">Download</button><button class="btn sec" data-re="hero">Jana Semula</button></div></div>\n      <div class="res"><b>Product Sheet (9:16)</b><div id="r_sheet" class="ph tall">Menunggu…</div><div class="row"><button class="btn sec" data-dl="sheet">Download</button><button class="btn sec" data-re="sheet">Jana Semula</button></div></div>\n      <div class="res"><b id="usageTitle">Usage (1:1)</b><div id="r_usage" class="ph">Menunggu…</div><div class="row"><button class="btn sec" data-dl="usage">Download</button><button class="btn sec" data-re="usage">Jana Semula</button></div></div>\n    </div>\n    <p class="tip">Kalau butang Download tak jalan, tekan lama / klik kanan gambar → Save image.</p>\n  </div>\n</div>' + '<div style="text-align:center;color:#94a3b8;font-size:11px;padding:8px">v7.2</div>';
 
 /* ================= CONFIG ================= */
 // CANVAS RUNTIME: apiKey MESTI kosong. Persekitaran Canvas sendiri isi kuota akaun user.
@@ -125,7 +125,8 @@ Return ONLY valid JSON:
  "variants":[{"name":"variant name","image_indexes":[0]}],
  "item_views":[{"item":"same name as items","view":"front|back|side|top|bottom","image_index":0,"box_2d":[ymin,xmin,ymax,xmax]}],
  "ortho_views":["2 to 4 of: front|back|left side|right side|top|underside"],
- "detail_features":["2 short English phrases naming the most important physical details to show in macro close-up"],
+ "has_label":false,
+ "detail_features":["2 or 3 short English phrases naming the most important physical details to show in macro close-up"],
  "usage_scene":"one English sentence: the most typical real-life moment of a person using the main item, in a Malaysian home or daily setting",
  "apparel_type":"top|bottom|full|headwear|other|null",
  "target_gender":"female|male|unisex|kids",
@@ -142,7 +143,8 @@ Rules:
 - variants: list different flavours/colours/packaging across images; if all the same, one variant with all indexes.
 - item_views: a TIGHT box (normalized 0-1000) around ONE physical unit only, per visible unit and view. Never include two units, logos, badges, text or props outside the product silhouette.
 - ortho_views: choose ONLY the views that show real information for THIS product. A robot vacuum: top, underside, front. A bottle: front, back, top. A flat pouch: front, back. A shoe: left side, top, underside.
-- detail_features: e.g. "side brush and wheels on the underside", "power button", "cap and nozzle", "fabric weave", "zipper".
+- has_label: true if the main item has a printed label, packaging text or a brand tag with readable words.
+- detail_features: if has_label is true, the FIRST item MUST be "front label close-up" (and add "back label close-up" if a back label is visible). Then the most important physical details, e.g. "side brush and wheels on the underside", "power button", "cap and nozzle", "fabric weave", "zipper".
 - est_height_cm: realistic real-world height of the main item (use printed volume/weight and packaging type).
 - hero_angle: the single best "hero" view of the MAIN item across all images — usually the main marketing/cover photo (often a slightly elevated, angled front view). Tight box around the main item only (exclude phones, docks, boxes, text, badges, hands).
 - scale_ref_image_index: index of an image where a hand or person uses/holds the product, else null. scale_ref_box: [ymin,xmin,ymax,xmax] around that hand + product, else null.`;
@@ -258,6 +260,31 @@ function heroAngleRef(){
   if (h && Array.isArray(h.box_2d) && S.ups[h.image_index] && variantIdx().has(h.image_index)) return crop(S.ups[h.image_index], h.box_2d);
   return null;
 }
+function heroExtra(){
+  let x = " FRAMING: tight product shot — the product fills about 90% of the frame, with only a small, even white margin around it.";
+  if (S.cat==="apparel") x += " GARMENT DISPLAY: show the garment fully OPEN and spread out — on a simple hanger or an invisible ghost mannequin, front facing the camera, sleeves and body visible. NEVER folded, rolled or stacked (unless every reference image shows it folded).";
+  if (S.cat==="headwear") x += " Show the headwear draped on a faceless mannequin head and bust (smooth blank head, no facial features), fully open, never folded.";
+  if (S.A.has_label) x += " LABEL CLARITY: the label/packaging text faces the camera and is enhanced — razor-sharp, high-contrast, perfectly legible, copied letter-for-letter from the reference with no invented or misspelled words.";
+  return x;
+}
+// crop away empty white margins so the product fills the frame, then pad back to a square
+async function tightSquare(dataUrl, margin=0.05){
+  const img = await loadImg(dataUrl);
+  const w=img.width, h=img.height, c=document.createElement("canvas"); c.width=w; c.height=h;
+  const x=c.getContext("2d"); x.drawImage(img,0,0);
+  let d; try{ d = x.getImageData(0,0,w,h).data; }catch(e){ return fitToAspect(dataUrl, "1:1"); }
+  let x0=w, y0=h, x1=-1, y1=-1;
+  for (let y=0;y<h;y+=2) for (let i=0;i<w;i+=2){
+    const k=(y*w+i)*4; if (d[k]<238||d[k+1]<238||d[k+2]<238){ if(i<x0)x0=i; if(i>x1)x1=i; if(y<y0)y0=y; if(y>y1)y1=y; }
+  }
+  if (x1<0) return fitToAspect(dataUrl, "1:1");
+  const bw=x1-x0, bh=y1-y0, side=Math.round(Math.max(bw,bh)*(1+2*margin));
+  if (side >= Math.max(w,h)*0.97) return fitToAspect(dataUrl, "1:1");
+  const o=document.createElement("canvas"); o.width=side; o.height=side;
+  const ox=o.getContext("2d"); ox.fillStyle="#fff"; ox.fillRect(0,0,side,side);
+  ox.drawImage(c, x0, y0, bw, bh, (side-bw)/2, (side-bh)/2, bw, bh);
+  return o.toDataURL("image/png");
+}
 async function genHero(){
   const items = heroItems().length ? heroItems() : [mainItem()];
   let refs = refsFor(items), angle = "";
@@ -268,7 +295,7 @@ async function genHero(){
   }
   const only = items.length===1 ? ` Show ONLY the ${items[0]} — no dock, stand, box, charger or any other item, even if it appears in the references.` : ` Show these items together, nothing else: ${itemsText(items)}.`;
   const prompt = `Professional commercial product photography, square 1:1 frame. ${itemsText(items)} isolated on a pure white seamless studio background (#FFFFFF), centered, fully visible and unobstructed, ${angle||" shown from a slightly elevated three-quarter front angle (camera about 30 degrees above, product turned slightly), the main label/logo facing the camera."}${only} Soft diffused studio lighting, subtle natural contact shadow beneath. Ultra-sharp focus, high detail, e-commerce catalog quality. No text, captions, badges or graphics in the image.${GLOBAL_RULES}`;
-  return fitToAspect(await genImage(prompt, refs, AR.hero), AR.hero);
+  return tightSquare(await genImage(prompt + heroExtra(), refs, AR.hero));
 }
 
 function sheetFashionRule(){
@@ -291,7 +318,7 @@ async function genSheet(){
 SECTION 1 — labeled "HERO VIEW": one large three-quarter hero shot of the ${m} filling the full width, soft shadow on the grey paper.
 SECTION 2 — labeled "ORTHOGRAPHIC ARRAY": a row of ${views.length} flat orthographic views of the ${m}, same scale, evenly spaced: ${views.map(v=>v.toUpperCase()+" VIEW").join(", ")}. Each view has a small white caption underneath with its name.
 SECTION 3 — labeled "DETAIL SPEC": ${Math.max(2,det.length)} side-by-side rectangular macro close-up photo tiles with a thin gap between them, showing: ${det.length?det.join("; "):"the most important physical details"}.${perfume}${sheetFashionRule()}
-Only the ${m} appears in every section — no dock, charger, box, stand or other item. Section titles and view captions are the ONLY text added; spell them exactly as given. Product branding and printed text stay exactly as on the real product.
+Any label close-up shows the printed label filling its tile, every word sharp, crisp and legible, copied letter-for-letter from the reference. Only the ${m} appears in every section — no dock, charger, box, stand or other item. Section titles and view captions are the ONLY text added; spell them exactly as given. Product branding and printed text stay exactly as on the real product.
 Studio strobe lighting, f/5.6 depth of field, sharp textures, consistent colour and scale across all sections, premium industrial-design presentation board look.${GLOBAL_RULES}`;
   return fitToAspect(await genImage(prompt, refs, AR.sheet), AR.sheet, "#c9c9c9");
 }
@@ -347,6 +374,8 @@ $("btnAnalyze").onclick = async ()=>{
     S.A = await analyze();
     if (!S.A.items?.length) throw new Error("Produk tak dikesan");
     S.cat = CAT_LABEL[S.A.category] ? S.A.category : "other";
+    S.A.detail_features = S.A.detail_features||[];
+    if (S.A.has_label && !S.A.detail_features.some(d=>/label|tag/i.test(d))) S.A.detail_features.unshift("front label close-up");
     S.variant = 0; S.model = undefined; S.face = undefined; S.heroIdx = undefined;
     S.hero = {}; S.A.items.forEach(i=>S.hero[i.name] = i.role==="main");
     if (!Object.values(S.hero).some(Boolean)) S.hero[S.A.items[0].name] = true;
