@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product Visual Suite</title>
+</head>
+<body style="margin:0;background:#f6f7f9;font-family:system-ui,sans-serif">
+<div id="pvs-root"><p style="text-align:center;color:#64748b;padding:40px">Memuatkan app…</p></div>
+<script>
+// JANGAN UBAH FAIL INI. Semua kod app ada di GitHub dan dimuat secara automatik.
+const apiKey = ""; // Canvas isi kuota akaun user sendiri. Jangan tambah input API key.
+(function(){
+  const REPO = "narbiz309/product-visual-suite", BRANCH = "main", FILE = "app.js";
+  function load(ref){
+    const s = document.createElement("script");
+    s.src = "https://cdn.jsdelivr.net/gh/" + REPO + "@" + ref + "/" + FILE;
+    s.onerror = function(){ if (ref !== BRANCH) load(BRANCH); else document.getElementById("pvs-root").innerHTML = '<p style="text-align:center;color:#b91c1c;padding:40px">Gagal muat app. Refresh semula.</p>'; };
+    document.body.appendChild(s);
+  }
+  // ambil commit terbaru supaya update GitHub terus masuk (elak cache jsDelivr)
+  fetch("https://api.github.com/repos/" + REPO + "/commits/" + BRANCH, {headers:{Accept:"application/vnd.github.sha"}})
+    .then(function(r){ return r.ok ? r.text() : Promise.reject(); })
+    .then(function(sha){ load(/^[0-9a-f]{40}$/.test(sha.trim()) ? sha.trim() : BRANCH); })
+    .catch(function(){ load(BRANCH); });
+})();
+</script>
+</body>
+</html>
