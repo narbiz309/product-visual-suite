@@ -1,10 +1,10 @@
-/* Product Visual Suite v7.0 — loaded by the Gemini Canvas stub via jsDelivr. Edit here, not in Canvas. */
+/* Product Visual Suite v7.1 — loaded by the Gemini Canvas stub via jsDelivr. Edit here, not in Canvas. */
 (function(){
 document.title = "Product Visual Suite";
 const st = document.createElement("style"); st.textContent = '\n  :root{--bg:#f6f7f9;--card:#fff;--ink:#0f172a;--mute:#64748b;--line:#e2e8f0;--acc:#dc2626}\n  *{box-sizing:border-box}\n  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}\n  .wrap{max-width:980px;margin:0 auto;padding:20px 16px 60px}\n  h1{font-size:22px;margin:0 0 4px} .sub{color:var(--mute);font-size:14px;margin:0 0 18px}\n  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:16px}\n  .card h2{font-size:16px;margin:0 0 10px}\n  .drop{border:2px dashed var(--line);border-radius:12px;padding:22px;text-align:center;color:var(--mute);cursor:pointer}\n  .drop.on{border-color:var(--acc);background:#fef2f2}\n  .thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;margin-top:12px}\n  .thumb{position:relative;border:1px solid var(--line);border-radius:8px;overflow:hidden;aspect-ratio:1;background:#fff}\n  .thumb img{width:100%;height:100%;object-fit:contain}\n  .thumb .x{position:absolute;top:4px;right:4px;background:#0009;color:#fff;border:0;border-radius:50%;width:22px;height:22px;cursor:pointer}\n  .thumb .n{position:absolute;bottom:4px;left:4px;background:#0009;color:#fff;font-size:11px;border-radius:4px;padding:1px 5px}\n  label.f{display:block;font-size:13px;color:var(--mute);margin:12px 0 6px}\n  input[type=text],select,textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;font-size:14px;font-family:inherit}\n  textarea{min-height:64px;resize:vertical}\n  .btn{display:inline-block;padding:12px 18px;border:0;border-radius:10px;background:var(--acc);color:#fff;font-weight:600;font-size:15px;cursor:pointer;margin-top:14px}\n  .btn:disabled{opacity:.5;cursor:not-allowed}\n  .btn.sec{background:#fff;color:var(--ink);border:1px solid var(--line)}\n  .items{display:flex;flex-direction:column;gap:6px}\n  .item{display:flex;align-items:center;gap:8px;padding:10px;border:1px solid var(--line);border-radius:8px;font-size:14px}\n  .item small{color:var(--mute)}\n  .alert{background:#fef3c7;border:1px solid #fde68a;color:#78350f;border-radius:8px;padding:10px;font-size:14px;margin:8px 0}\n  .err{background:#fee2e2;border-color:#fecaca;color:#7f1d1d}\n  .results{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;align-items:start}\n  .res img{width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;display:block}\n  .res .ph{aspect-ratio:1;border:1px dashed var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--mute);font-size:14px;text-align:center;padding:10px}\n  .res .ph.tall{aspect-ratio:9/16}\n  .row{display:flex;gap:8px;flex-wrap:wrap}\n  .row .btn{margin-top:10px;padding:9px 14px;font-size:14px}\n  .spin{display:inline-block;width:16px;height:16px;border:2px solid #ddd;border-top-color:var(--acc);border-radius:50%;animation:s 1s linear infinite;vertical-align:middle;margin-right:6px}\n  @keyframes s{to{transform:rotate(360deg)}}\n  .tip{font-size:12px;color:var(--mute);margin-top:6px}\n  .hidden{display:none}\n';
 document.head.appendChild(st);
 const root = document.getElementById("pvs-root") || document.body;
-root.innerHTML = '<div class="wrap">\n  <h1>Product Visual Suite</h1>\n  <p class="sub">Upload gambar produk → Hero Shot, Product Sheet dan gambar Usage untuk rujukan video.</p>\n\n  <div class="card">\n    <h2>1. Upload gambar produk (1–8)</h2>\n    <div id="drop" class="drop">Tekan atau tarik gambar ke sini<br><small>Upload depan, belakang, sisi, bawah. Boleh tambah gambar customer guna produk (untuk rujukan saiz).</small></div>\n    <input id="file" type="file" accept="image/*" multiple class="hidden">\n    <div id="thumbs" class="thumbs"></div>\n    <label class="f">Dimensi produk (pilihan, cth: 32 x 20 cm)</label>\n    <input id="dims" type="text" placeholder="Tak wajib">\n    <button id="btnAnalyze" class="btn" disabled>Analisis Produk</button>\n    <div id="anMsg"></div>\n  </div>\n\n  <div id="planCard" class="card hidden">\n    <h2>2. Semak plan</h2>\n    <div id="planBody"></div>\n    <button id="btnGen" class="btn">Jana Gambar</button>\n  </div>\n\n  <div id="resCard" class="card hidden">\n    <h2>3. Hasil</h2>\n    <div class="results">\n      <div class="res"><b>Hero Shot (1:1)</b><div id="r_hero" class="ph">Menunggu…</div><div class="row"><button class="btn sec" data-dl="hero">Download</button><button class="btn sec" data-re="hero">Jana Semula</button></div></div>\n      <div class="res"><b>Product Sheet (9:16)</b><div id="r_sheet" class="ph tall">Menunggu…</div><div class="row"><button class="btn sec" data-dl="sheet">Download</button><button class="btn sec" data-re="sheet">Jana Semula</button></div></div>\n      <div class="res"><b id="usageTitle">Usage (1:1)</b><div id="r_usage" class="ph">Menunggu…</div><div class="row"><button class="btn sec" data-dl="usage">Download</button><button class="btn sec" data-re="usage">Jana Semula</button></div></div>\n    </div>\n    <p class="tip">Kalau butang Download tak jalan, tekan lama / klik kanan gambar → Save image.</p>\n  </div>\n</div>' + '<div style="text-align:center;color:#94a3b8;font-size:11px;padding:8px">v7.0</div>';
+root.innerHTML = '<div class="wrap">\n  <h1>Product Visual Suite</h1>\n  <p class="sub">Upload gambar produk → Hero Shot, Product Sheet dan gambar Usage untuk rujukan video.</p>\n\n  <div class="card">\n    <h2>1. Upload gambar produk (1–8)</h2>\n    <div id="drop" class="drop">Tekan atau tarik gambar ke sini<br><small>Upload depan, belakang, sisi, bawah. Boleh tambah gambar customer guna produk (untuk rujukan saiz).</small></div>\n    <input id="file" type="file" accept="image/*" multiple class="hidden">\n    <div id="thumbs" class="thumbs"></div>\n    <label class="f">Dimensi produk (pilihan, cth: 32 x 20 cm)</label>\n    <input id="dims" type="text" placeholder="Tak wajib">\n    <button id="btnAnalyze" class="btn" disabled>Analisis Produk</button>\n    <div id="anMsg"></div>\n  </div>\n\n  <div id="planCard" class="card hidden">\n    <h2>2. Semak plan</h2>\n    <div id="planBody"></div>\n    <button id="btnGen" class="btn">Jana Gambar</button>\n  </div>\n\n  <div id="resCard" class="card hidden">\n    <h2>3. Hasil</h2>\n    <div class="results">\n      <div class="res"><b>Hero Shot (1:1)</b><div id="r_hero" class="ph">Menunggu…</div><div class="row"><button class="btn sec" data-dl="hero">Download</button><button class="btn sec" data-re="hero">Jana Semula</button></div></div>\n      <div class="res"><b>Product Sheet (9:16)</b><div id="r_sheet" class="ph tall">Menunggu…</div><div class="row"><button class="btn sec" data-dl="sheet">Download</button><button class="btn sec" data-re="sheet">Jana Semula</button></div></div>\n      <div class="res"><b id="usageTitle">Usage (1:1)</b><div id="r_usage" class="ph">Menunggu…</div><div class="row"><button class="btn sec" data-dl="usage">Download</button><button class="btn sec" data-re="usage">Jana Semula</button></div></div>\n    </div>\n    <p class="tip">Kalau butang Download tak jalan, tekan lama / klik kanan gambar → Save image.</p>\n  </div>\n</div>' + '<div style="text-align:center;color:#94a3b8;font-size:11px;padding:8px">v7.1</div>';
 
 /* ================= CONFIG ================= */
 // CANVAS RUNTIME: apiKey MESTI kosong. Persekitaran Canvas sendiri isi kuota akaun user.
@@ -132,7 +132,8 @@ Return ONLY valid JSON:
  "est_height_cm":0,
  "size_basis":"short reason",
  "scale_ref_image_index":null,
- "scale_ref_box":null
+ "scale_ref_box":null,
+ "hero_angle":{"image_index":0,"box_2d":[ymin,xmin,ymax,xmax]}
 }
 Rules:
 - items = ONLY physical products in the images. Never invent items. Duplicates of the same product are ONE item.
@@ -143,6 +144,7 @@ Rules:
 - ortho_views: choose ONLY the views that show real information for THIS product. A robot vacuum: top, underside, front. A bottle: front, back, top. A flat pouch: front, back. A shoe: left side, top, underside.
 - detail_features: e.g. "side brush and wheels on the underside", "power button", "cap and nozzle", "fabric weave", "zipper".
 - est_height_cm: realistic real-world height of the main item (use printed volume/weight and packaging type).
+- hero_angle: the single best "hero" view of the MAIN item across all images — usually the main marketing/cover photo (often a slightly elevated, angled front view). Tight box around the main item only (exclude phones, docks, boxes, text, badges, hands).
 - scale_ref_image_index: index of an image where a hand or person uses/holds the product, else null. scale_ref_box: [ymin,xmin,ymax,xmax] around that hand + product, else null.`;
 
 async function analyze(){
@@ -243,11 +245,29 @@ async function blurFaces(dataUrl){
 }
 
 /* ================= GENERATORS ================= */
+function heroAngleRef(){
+  const sel = S.heroIdx;
+  if (sel === "none") return null;
+  if (sel !== undefined && sel !== "auto" && S.ups[+sel]){
+    const m = mainItem(); const ok = (S.A.item_views||[]).filter(v=>v.item===m && v.image_index===+sel && Array.isArray(v.box_2d));
+    ok.sort((a,b)=>area(b.box_2d)-area(a.box_2d));
+    if (S.A.hero_angle && S.A.hero_angle.image_index===+sel && Array.isArray(S.A.hero_angle.box_2d)) return crop(S.ups[+sel], S.A.hero_angle.box_2d);
+    return ok[0] ? crop(S.ups[+sel], ok[0].box_2d) : S.ups[+sel].data;
+  }
+  const h = S.A.hero_angle;
+  if (h && Array.isArray(h.box_2d) && S.ups[h.image_index] && variantIdx().has(h.image_index)) return crop(S.ups[h.image_index], h.box_2d);
+  return null;
+}
 async function genHero(){
   const items = heroItems().length ? heroItems() : [mainItem()];
-  const refs = refsFor(items);
+  let refs = refsFor(items), angle = "";
+  const ha = heroAngleRef();
+  if (ha){
+    refs = [ha, ...refs].slice(0,6);
+    angle = ` CAMERA ANGLE: copy the exact camera angle, viewing height, tilt and product orientation of the FIRST reference image (same perspective, same side of the product facing the camera, same rotation). Only change the background to pure white and remove everything that is not the ${items[0]}.`;
+  }
   const only = items.length===1 ? ` Show ONLY the ${items[0]} — no dock, stand, box, charger or any other item, even if it appears in the references.` : ` Show these items together, nothing else: ${itemsText(items)}.`;
-  const prompt = `Professional commercial product photography, square 1:1 frame. ${itemsText(items)} isolated on a pure white seamless studio background (#FFFFFF), centered, fully visible and unobstructed, shown from its most recognisable front angle with the main label/logo facing the camera.${only} Soft diffused studio lighting, subtle natural contact shadow beneath. Ultra-sharp focus, high detail, e-commerce catalog quality. No text, captions, badges or graphics in the image.${GLOBAL_RULES}`;
+  const prompt = `Professional commercial product photography, square 1:1 frame. ${itemsText(items)} isolated on a pure white seamless studio background (#FFFFFF), centered, fully visible and unobstructed, ${angle||" shown from a slightly elevated three-quarter front angle (camera about 30 degrees above, product turned slightly), the main label/logo facing the camera."}${only} Soft diffused studio lighting, subtle natural contact shadow beneath. Ultra-sharp focus, high detail, e-commerce catalog quality. No text, captions, badges or graphics in the image.${GLOBAL_RULES}`;
   return fitToAspect(await genImage(prompt, refs, AR.hero), AR.hero);
 }
 
@@ -327,7 +347,7 @@ $("btnAnalyze").onclick = async ()=>{
     S.A = await analyze();
     if (!S.A.items?.length) throw new Error("Produk tak dikesan");
     S.cat = CAT_LABEL[S.A.category] ? S.A.category : "other";
-    S.variant = 0; S.model = undefined; S.face = undefined;
+    S.variant = 0; S.model = undefined; S.face = undefined; S.heroIdx = undefined;
     S.hero = {}; S.A.items.forEach(i=>S.hero[i.name] = i.role==="main");
     if (!Object.values(S.hero).some(Boolean)) S.hero[S.A.items[0].name] = true;
     const d = parseFloat($("dims").value); if (d) S.A.est_height_cm = Math.max(...$("dims").value.match(/[\d.]+/g).map(Number));
@@ -346,6 +366,11 @@ function renderPlan(){
   }
   h += `<label class="f">Produk dikesan — tick item yang masuk Hero Shot</label><div class="items">${S.A.items.map(i=>`<label class="item"><input type="checkbox" class="hchk" value="${esc(i.name)}" ${S.hero[i.name]?"checked":""}> ${esc(i.name)} <small>${i.role==="main"?"(produk utama)":"(aksesori)"}</small></label>`).join("")}</div>
     <div class="tip">Product Sheet dan Usage sentiasa guna produk utama sahaja.</div>`;
+  const hi = S.A.hero_angle?.image_index;
+  h += `<label class="f">Sudut Hero Shot ikut gambar</label><select id="selHeroIdx">
+    <option value="auto" ${(S.heroIdx??"auto")==="auto"?"selected":""}>Auto (AI pilih${Number.isInteger(hi)?": gambar "+(hi+1):""})</option>
+    ${S.ups.map((_,i)=>`<option value="${i}" ${String(S.heroIdx)===String(i)?"selected":""}>Gambar ${i+1}</option>`).join("")}
+    <option value="none" ${S.heroIdx==="none"?"selected":""}>Sudut standard (3/4 dari atas)</option></select>`;
   h += `<label class="f">Kategori (tukar kalau salah)</label><select id="selCat">${Object.keys(CAT_LABEL).map(k=>`<option value="${k}" ${k===S.cat?"selected":""}>${CAT_LABEL[k]}</option>`).join("")}</select>`;
   h += `<label class="f">Nama produk (tajuk sheet — betulkan kalau salah eja)</label><input id="dname" type="text" value="${esc(S.A.display_name||mainItem())}">`;
   h += `<label class="f">Orthographic views (pisah dengan koma)</label><input id="ortho" type="text" value="${esc((S.A.ortho_views||[]).join(", "))}">`;
@@ -366,6 +391,7 @@ function renderPlan(){
   }
   $("planBody").innerHTML = h;
   if ($("selVar")) $("selVar").onchange=e=>{S.variant=+e.target.value; renderPlan();};
+  $("selHeroIdx").onchange=e=>{S.heroIdx=e.target.value;};
   $("selCat").onchange=e=>{S.cat=e.target.value; S.model=undefined; S.face=undefined; renderPlan();};
   document.querySelectorAll(".hchk").forEach(c=>c.onchange=()=>{S.hero[c.value]=c.checked;});
   if ($("selModel")) $("selModel").onchange=e=>{S.model=e.target.value;};
